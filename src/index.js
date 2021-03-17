@@ -1,17 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM  from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './components/app';
+// import game classes
+import Hand from './game/hand';
+// import game logic
+import { getWinner, dealerDrawing } from './game';
 
+// create instances of game classes
+const dealerHand = new Hand();
+const playerHand = new Hand();
+
+/**
+ * Renders the app into the DOM.
+ * `#root` is the mounting point.
+ */
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    // and pass them all to the app component
+    <App
+        dealerHand={dealerHand}
+        playerHand={playerHand}
+        getWinner={getWinner}
+        dealerDrawing={dealerDrawing}
+    />,
+    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
